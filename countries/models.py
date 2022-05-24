@@ -1,5 +1,10 @@
 from django.db import models
 from django.core.validators import MinLengthValidator
+from django.urls import reverse
+
+
+def attachment_path(instance, filename):
+    return "countries/" + str(instance) + "/attachments/" + filename
 
 
 class Aliance:
@@ -22,7 +27,7 @@ class Country(models.Model):
     cPopulation = models.IntegerField(verbose_name='Populace země', blank=True, default=1)
     cSummary = models.TextField(verbose_name='Shrnutí země')
     cCapital = models.CharField(max_length=50, unique=True, verbose_name='Hlavní město')
-    # cFlag =
+    img = models.ImageField(upload_to=attachment_path, blank=True, null=True, verbose_name="Vlajka státu")
 
     class Meta:
         ordering = ['cName']
@@ -60,3 +65,24 @@ class Town(models.Model):
 
     def __str__(self):
         return self.tName
+
+
+class Attachment(models.Model):
+    title = models.CharField(max_length=200, verbose_name="Title")
+    last_update = models.DateTimeField(auto_now=True)
+    file = models.FileField(upload_to=attachment_path, null=True, verbose_name="File")
+    TYPE_OF_ATTACHMENT = (('audio', 'Audio'),
+                          ('image', 'Image'),
+                          ('text', 'Text'),
+                          ('video', 'Video'),
+                          ('other', 'Other'),)
+
+    type = models.CharField(max_length=5, choices=TYPE_OF_ATTACHMENT, blank=True, default='image',
+                            help_text='Select allowed attachment type', verbose_name="Attachment type")
+    img = models.ForeignKey(Country, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ["-last_update", "type"]
+
+    def __str__(self):
+        return f"{self.title}, ({self.type})"
