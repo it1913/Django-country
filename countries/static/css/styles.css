@@ -1,0 +1,17 @@
+.headline{
+    padding: 10px 10px 10px 30px;
+    margin: 5px 0px;
+    background-color: rgb(219, 0, 0);
+    color: white;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.bg-main-page{
+    background-color: rgb(219, 0, 0);
+    color: white;
+}
+
+.text-navbar{
+     color: rgb(219, 0, 0) !important;
+}
+

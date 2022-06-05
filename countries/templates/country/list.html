@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Seznam zemí{% endblock %}
+{% block content %}
+<div class="row mb-3">
+  <div class="col-sm-12 bg-main-page">
+    <h2 class="display-4 text-center">Seznam zemí</h2>
+  </div>
+</div>
+<div class="row">
+  {% for country in country_list %}
+  <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+    <div class="card">
+      {% if country.img %}
+      <img class="card-img-top" src="{{ country.img.url }}" alt="{{ country.title}}" height="180">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'country_detail' country.pk %}">{{ country.cName }}</a></h5>
+        <p class="card-text"><strong>Systém: </strong> {{ country.cSystem }}</p>
+        <a href="{% url 'country_detail' country.pk %}" class="btn btn-primary">Podrobnosti</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

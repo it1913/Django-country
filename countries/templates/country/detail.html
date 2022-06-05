@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Detail zemí{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <h3 class="headline">{{ country_detail.cName }}</h3>
+            <p>{{ country_detail.cSummary }}</p>
+        </div>
+        <div class="col-lg-4" id="statistika">
+            <h3 class="headline">Základní informace</h3>
+            <div>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Vlajka země:</th>
+                        <td><img class="card-img-top img-fluid center" src="{{ country_detail.img.url }}" alt="{{ country.title}}" height="180" >
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Hlavní město:</th>
+                        <td>{{ country_detail.cCapital }}</td>
+                    </tr>
+                    <tr>
+                        <th>Zkratka:</th>
+                        <td>{{ country_detail.cAbbr }}</td>
+                    </tr>
+                    <tr>
+                        <th>Obyvatelstvo:</th>
+                        <td id="Population"></td>
+                    </tr>
+                    <tr>
+                        <th>Systém:</th>
+                        <td>{{ country_detail.cSystem }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let num = {{ country_detail.cPopulation}}
+    function numberWithSpaces(x){
+        document.getElementById("Population").textContent = x.toLocaleString();
+    }
+    numberWithSpaces(num);
+</script>
+{% endblock %}
+
