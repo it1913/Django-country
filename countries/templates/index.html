@@ -2,29 +2,21 @@
 {% block content %}
 <div class="row mb-3 bg-main-page p-3">
   <div class="col-sm-12">
-    <h2 class="text-center">Seznam zemí</h2>
+    <h2 class="text-center display-4">Úvodní stránka</h2>
   </div>
 </div>
-<div class="row">
-  {% for country in countries %}
-  <div class="col-sm-4">
-    <div class="card">
-      {% if country.img %}
-      <img class="card-img-top" src="{{ country.img.url }}" alt="{{ country.cName }}" height="350" width="800">
-      {% endif %}
-      <div class="card-body">
-        <h4 class="card-title">{{ country.cName }}</h4>
-        <p class="card-text"><strong>Systém: </strong> {{ country.cSystem }}</p>
-        <p><strong>Hlavní město:</strong> {{ country.cCapital }}</p>
-        <a href="{% url 'country_detail' country.pk %}" class="btn btn-primary">Podrobnosti</a>
-      </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="text-center headline text-light p-2">Rozcestí zemí</h2>
+        {% include "blocks/country.html" %}
     </div>
-  </div>
-  {% endfor %}
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <strong>Zemí v databázi:</strong> {{ num_countries }}
-  </div>
+    <div class="col-md-3">
+        <h2 class="text-center headline text-light p-2">Země s největší hustotou zalidnění</h2>
+        {% include "blocks/countryByDensity.html" %}
+    </div>
+    <div class="col-md-3">
+        <h2 class="text-center headline text-light p-2">Top 10 Regionů podle počtu obyvatel</h2>
+        {% include "blocks/regionByPopulation.html" %}
+    </div>
 </div>
 {% endblock %}

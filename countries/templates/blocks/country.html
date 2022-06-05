@@ -1,0 +1,18 @@
+<div>
+    {% for country in country %}
+    <div class="row mb-4 border-bottom">
+        <div class="col-md-2">
+            <a href="{% url 'country_detail' country.pk %}">
+                {% if country.img %}
+                <img class="border" src="{{ country.img.url }}" alt="{{ country.cName }}" height="90" width="150">
+                {% endif %}
+            </a>
+        </div>
+        <div class="col-md-10">
+            <h4><a href="{% url 'country_detail' country.pk %}">{{ country.cName|upper}}</a></h4>
+            <p>{{ country.cSummary|truncatewords:30 }}</p>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+</div>

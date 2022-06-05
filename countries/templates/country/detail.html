@@ -32,17 +32,32 @@
                         <th>Systém:</th>
                         <td>{{ country_detail.cSystem }}</td>
                     </tr>
+                    <tr>
+                        <th>Rozloha:</th>
+                        <td ><span id="Area"></span> km²</td>
+                    </tr>
+                    <tr>
+                        <th>Hustota zalidnění</th>
+                        <td><span id="Density"></span> obyvatel na km²</td>
+                    </tr>
                 </table>
             </div>
         </div>
     </div>
 </div>
 <script>
-    let num = {{ country_detail.cPopulation}}
-    function numberWithSpaces(x){
-        document.getElementById("Population").textContent = x.toLocaleString();
+    function numberWithSpaces(x, y){
+        document.getElementById(y).textContent = x.toLocaleString();
     }
-    numberWithSpaces(num);
+    let num = {{ country_detail.cPopulation}};
+    let num2 = {{ country_detail.cArea}};
+    let num3 = {{ country_detail.cPopulationDensity}};
+    let a = "Population";
+    let b = "Area";
+    let c = "Density";
+    numberWithSpaces(num, a);
+    numberWithSpaces(num2, b);
+    numberWithSpaces(num3, c);
 </script>
 {% endblock %}
 

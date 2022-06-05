@@ -1,0 +1,9 @@
+<ul class="list-group">
+ {% for region in regionByPopulation %}
+ <li class="list-group-item list-group-item-danger d-flex justify-content-between
+    align-items-center">
+<p>{{ region.rName }}</p>
+ <strong>{{ region.rPopulation }}</strong></li>
+ {% endfor %}
+</ul>
+

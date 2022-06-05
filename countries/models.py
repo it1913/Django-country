@@ -28,6 +28,8 @@ class Country(models.Model):
     cSummary = models.TextField(verbose_name='Shrnutí země')
     cCapital = models.CharField(max_length=50, unique=True, verbose_name='Hlavní město')
     img = models.ImageField(upload_to=attachment_path, blank=True, null=True, verbose_name="Vlajka státu")
+    cPopulationDensity = models.IntegerField(verbose_name='Hustota zalidnění', blank=True, default=1);
+    cArea = models.IntegerField(verbose_name='Rozloha státu', blank=True, default=1);
 
     class Meta:
         ordering = ['cName']

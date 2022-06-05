@@ -2,12 +2,12 @@ from django.shortcuts import render
 from countries.models import Country,Town,Region,Attachment
 from django.views.generic import ListView, DetailView
 
+
 def index(request):
-     num_countries = Country.objects.all().count()
-     countries = Country.objects.order_by('-cName')[:3]
      context = {
-          'num_countries': num_countries,
-          'countries': countries
+          'countryByDensity': Country.objects.order_by('-cPopulationDensity')[:5],
+          'regionByPopulation': Region.objects.order_by('-rPopulation')[:10],
+          'country': Country.objects.order_by('-cAbbr')[:5],
      }
      return render(request, 'index.html', context=context)
 
@@ -22,5 +22,3 @@ class CountryDetailView(DetailView):
      model = Country
      context_object_name = 'country_detail'
      template_name = 'country/detail.html'
-
-
