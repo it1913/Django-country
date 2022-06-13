@@ -3,6 +3,7 @@
     margin: 5px 0px;
     background-color: rgb(219, 0, 0);
     color: white;
+    font-family: "Times New Roman", Times, serif;
 }
 
 .bg-main-page{
@@ -14,6 +15,3 @@
      color: rgb(219, 0, 0) !important;
 }
 
-.border{
-  border: 5px solid #555;
-}

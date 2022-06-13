@@ -4,10 +4,11 @@ from django.views.generic import ListView, DetailView
 
 
 def index(request):
+     num_countries = Country.objects.all().count()
+     countries = Country.objects.order_by('-cName')[:3]
      context = {
-          'countryByDensity': Country.objects.order_by('-cPopulationDensity')[:5],
-          'regionByPopulation': Region.objects.order_by('-rPopulation')[:10],
-          'country': Country.objects.order_by('-cAbbr')[:5],
+          'num_countries': num_countries,
+          'countries': countries
      }
      return render(request, 'index.html', context=context)
 

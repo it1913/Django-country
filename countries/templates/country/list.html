@@ -10,7 +10,7 @@
 <div class="row">
   {% for country in country_list %}
   <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
-    <div class="card h-100">
+    <div class="card">
       {% if country.img %}
       <img class="card-img-top" src="{{ country.img.url }}" alt="{{ country.title}}" height="180">
       {% endif %}
